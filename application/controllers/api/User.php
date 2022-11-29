@@ -38,8 +38,5 @@ public function login_post()
                 );
         }
         }
-
-        
-}
-        
+    }     
 }

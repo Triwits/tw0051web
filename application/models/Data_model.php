@@ -6,29 +6,25 @@ class Data_model extends CI_Model {
 
 
 public function getUserData($login,$pass){
-      $data= $this->db->where('email',$login)->where('password',$pass)->get('user');
+      $data= $this->db->where('email',$login)->where('password',$pass)->get('porter_reg');
        return $data;
    }
 
  public function expense($data)
        {
-        $this->FullName = $data['FullName'];
-        $this->AirlineName = $data['AirlineName'];      
-        $this->Bags = $data['Bags']; 
-        $this->Normal_Vip = $data['Normal_Vip'];
-        
-        
-               
-     if($this->db->insert('expense',$this))
+        $this->FullName    = $data['FullName']; // please read the below note
+        $this->AirlineName  = $data['AirlineName'];
+         $this->Bags    = $data['Bags']; 
+          $this->Normal_Vip    = $data['Normal_Vip']; 
+       if($this->db->insert('expense',$this))
        {    
-         return 'Data inserted successfully';
+           return 'Data inserted successfully';
+       }
+         else
+       {
+           return "Error has occured";
+       }
         }
-      else
-          {
-            return "Error has occured";
-           }
-        }
-
 
 public function expenseupdate($id,$data){
        //$this->FullName = $data['FullName'];

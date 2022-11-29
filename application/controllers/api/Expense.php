@@ -11,18 +11,22 @@ class Expense extends REST_Controller {
     }
        
 
-      
+       public function expense_get()
+    {
+     $data = $this->db->get("expense")->result();
+         $this->response($data, REST_Controller::HTTP_OK);
+    }
+
  public function expense_post()
     {
-     $data = array('FullName' => $this->input->post('FullName'),
-                   'AirlineName' => $this->input->post('AirlineName'),
-                   'Bags' => $this->input->post('Bags'),
-                   'Normal_Vip' => $this->input->post('Normal_Vip'),
-                 );
+      $data = array(
+            'FullName' => $this->input->post('FullName'),
+           'AirlineName' => $this->input->post('AirlineName'),
+           'Bags' => $this->input->post('Bags'),
+            'Normal_Vip' => $this->input->post('Normal_Vip'),
+           );
            $r = $this->Data_model->expense($data);
            $this->response($r); 
-
-
     }
 
 
