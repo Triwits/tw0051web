@@ -17,6 +17,11 @@ class Expense extends REST_Controller {
          $this->response($data, REST_Controller::HTTP_OK);
     }
 
+public function viewBags_get()
+{
+    $data = $this->db->select('*')->from('bags')->order_by('id')->get()->result();
+         $this->response($data, REST_Controller::HTTP_OK);
+}
  public function expense_post()
     {
       $data = array(
