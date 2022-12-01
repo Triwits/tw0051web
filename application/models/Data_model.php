@@ -10,20 +10,30 @@ public function getUserData($login,$pass){
        return $data;
    }
 
- public function expense($data)
+ public function passengerData()
        {
-        $this->FullName    = $data['FullName']; // please read the below note
-        $this->AirlineName  = $data['AirlineName'];
-         $this->Bags    = $data['Bags']; 
-          $this->Normal_Vip    = $data['Normal_Vip']; 
-       if($this->db->insert('expense',$this))
-       {    
-           return 'Data inserted successfully';
-       }
-         else
-       {
-           return "Error has occured";
-       }
+         $json = file_get_contents('php://input');
+
+        $data = json_decode($json);
+         $inputs=$data->dataToSubmit;
+           $insertData=array(
+              'FullName'=>$inputs->FullName,
+                'AirlineName'=>$inputs->AirlineName,
+               // 'Bags'=>$inputs->Bags,
+               // 'Normal_Vip'=>$inputs->Normal_Vip,
+               'contact'=>$inputs->contact,
+               'email'=>$inputs->email,
+               // 'flight_no'=>$inputs->flight_no
+               );
+               $this->db->insert('expense',$insertData);
+             $getResult=array(
+                'result'=>'insert',
+                'operation'=>"Successfully inserted",
+                'data'=>$data,
+                'status'=>400,
+                );
+       //}
+  return $getResult;
         }
 
 public function expenseupdate($id,$data){

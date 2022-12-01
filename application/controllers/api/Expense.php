@@ -24,14 +24,16 @@ public function viewBags_get()
 }
  public function expense_post()
     {
-      $data = array(
-            'FullName' => $this->input->post('FullName'),
-           'AirlineName' => $this->input->post('AirlineName'),
-           'Bags' => $this->input->post('Bags'),
-            'Normal_Vip' => $this->input->post('Normal_Vip'),
-           );
-           $r = $this->Data_model->expense($data);
-           $this->response($r); 
+       $result=$this->Data_model->passengerData();
+
+       $data["result"] = $result['result'];
+       $data["operation"] = $result['operation'];
+       $data['status']=$result['status'];
+       $data['data']=$result['data'];
+     
+
+       $status=$result['status'];
+           $this->response($data); 
     }
 
 
