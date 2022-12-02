@@ -11,11 +11,16 @@ class Expense extends REST_Controller {
     }
        
 
-       public function expense_get()
+       public function viewPassdetails_get()
     {
      $data = $this->db->get("expense")->result();
          $this->response($data, REST_Controller::HTTP_OK);
     }
+    //  public function getPassbyid_get($id)
+    // {
+    //  $data = $this->db->select('*')->from("expense")->where('expense.id',$id)->get()->result();
+    //      $this->response($data, REST_Controller::HTTP_OK);
+    // }
 
 public function viewBags_get()
 {
